@@ -13,7 +13,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>asusuigboanyiamaka</name>
     <packaging>jar</packaging>
-    <description>Asusuigboanyiamaka Web Application</description>
+    <description>Eazy School Web Application</description>
     <properties>
         <java.version>17</java.version>
     </properties>
