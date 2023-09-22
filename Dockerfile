@@ -3,6 +3,6 @@ COPY . .
 RUN mvn clean package -DskipTests
 
 FROM openjdk:17.0.1-jdk-slim
-COPY --from=build /target/example_52-0.0.1-SNAPSHOT.jar example_52.jar
+COPY --from=build /target/asusuigboanyiamaka-0.0.1-SNAPSHOT.jar asusuigboanyiamaka.jar
 EXPOSE 8080
-ENTRYPOINT ["java", "-jar","example_52.jar"]
+ENTRYPOINT ["java", "-jar","asusuigboanyiamaka.jar"]
