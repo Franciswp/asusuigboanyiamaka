@@ -13,61 +13,13 @@ Author URL: http://w3layouts.com
     <!-- Google fonts -->
     <link href="//fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
     <!-- Template CSS Style link -->
-    <link rel="stylesheet" href="assets/css/style-starter.css">
+    <link rel="stylesheet" href="/assets/css/style-starter.css">
 </head>
 
 <body>
 
 <!-- header -->
-<!-- <div th:replace="~{header :: header}">...</div> -->
-<header id="site-header" class="fixed-top">
-    <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-light">
-            <a class="navbar-brand"><i class="fas fa-graduation-cap"></i>Asusuigboanyiamaka
-                <a th:href="@{/home}" class="navbar-brand">
-                    <!-- <img src="assets/images/business_logo.jpeg" height="70" width="120" alt="asusuigboanyiamaka "
-                          title="Asusuigboanyiamaka"> -->
-                </a>
-                <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false"
-                        aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
-                    <span class="navbar-toggler-icon fa icon-close fa-times"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarScroll">
-                    <ul class="navbar-nav ms-auto my-2 my-lg-0 navbar-nav-scroll">
-                        <li class="nav-item">
-                            <a th:href="@{/home}" class="nav-link " >Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a th:href="@{/about}" class="nav-link">About</a>
-                        </li>
-                        <li class="nav-item">
-                            <a th:href="@{/programs}" class="nav-link">Programmes</a>
-                        </li>
-                        <li class="nav-item">
-                            <a th:href="@{/contact}" class="nav-link">Contact</a>
-                        </li>
-                    </ul>
-                </div>
-                <!-- toggle switch for light and dark theme -->
-                <div class="cont-ser-position">
-                    <nav class="navigation">
-                        <div class="theme-switch-wrapper">
-                            <label class="theme-switch" for="checkbox">
-                                <input type="checkbox" id="checkbox">
-                                <div class="mode-container">
-                                    <i class="gg-sun"></i>
-                                    <i class="gg-moon"></i>
-                                </div>
-                            </label>
-                        </div>
-                    </nav>
-                </div>
-                <!-- //toggle switch for light and dark theme -->
-        </nav>
-    </div>
-</header>
+<div th:replace="~{header :: header}">...</div>
 <!-- //header -->
 
 <!-- inner banner -->
@@ -84,31 +36,40 @@ Author URL: http://w3layouts.com
 </section>
 <!-- //inner banner -->
 
-<!-- contact block -->
-<section class="w3l-contact py-5" id="contact">
-    <div class="container py-md-5 py-4">
-        <div class="title-main text-center mx-auto mb-md-5 mb-4" style="max-width:500px;">
-            <p class="text-uppercase">Thank you for the information</p>
-
+<!-- Holidays -->
+<section class="w3l-timeline-1 py-5">
+    <div class="container py-lg-5 py-4">
+        <div class="title-heading-w3 text-center mb-sm-5 mb-4">
+            <h5 class="title-small">Asususigboanyiamaka</h5>
+            <h3 class="title-style">Thanks</h3>
         </div>
-        <div class="row contact-block">
-            <div class="title-main text-center mx-auto mb-md-5 mb-4" style="max-width:500px;">
-                <p class="text-uppercase"> Hello, I have received your message and I will get back to you soon!</p>
-                <div th:class="contactService" class="row">
-
+        <div class="row">
+            <div class="col-lg-6" >  <!-- th:if="${festival} == true" -->
+                <h5 class="sub-title-timeline"><i class="fas fa-snowman"></i> Contact Information</h5>
+                <div class="timeline">
+                    <div class="timeline">
+                        <div class="column"> <!-- th:each="holiday : ${FESTIVAL}" -->
+                            <div class="title">
+                              <p> H! <span th:text="${contact.name}">,</span> I have received your contact information
+                             with the email <span th:text="${contact.email}">.</span>
+                              I will get back to you soon.</p>
+                            </div>
+                            <div class="title">
+                                <h2 th:text="${contact.subject}"></h2>
+                            </div>
+                            <div class="Date Created">
+                                <h6 th:text="${contact.createdAt}" class="fas fa-calendar-alt"><i class="fas fa-calendar-alt"></i></h6>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
-<!-- map -->
-<!--<div class="map">
-    <iframe
-            src="https://www.google.de/maps/embed?@51.2384218,6.4846969,10z/data=!3m1!4b1!4m6!3m5!1s0x47b8c97bf1465907:0x42760fc4a2a73b0!8m2!3d51.2277411!4d6.7734556!16zL20vMGhmN2w?entry=ttu";
-            width="100%" height="400" frameborder="0" style="border: 0px;" allowfullscreen=""></iframe>
-</div>-->
-<!-- //contact block -->
-<!-- src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d193595.15830921454!2d-74.11976369744556!3d40.69766374856529!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2sin!4v1639587930884!5m2!1sen!2sin" - <!-- src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d193595.15830921454!2d-74.11976369744556!3d40.69766374856529!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2sin!4v1639587930884!5m2!1sen!2sin" - <!-- src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d193595.15830921454!2d-74.11976369744556!3d40.69766374856529!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2sin!4v1639587930884!5m2!1sen!2sin" -
+
+<!-- // Holidays -->
+
 <!-- footer block -->
 <div th:replace="~{footer :: footer}">...</div>
 <!-- //footer block -->
@@ -141,11 +102,15 @@ Author URL: http://w3layouts.com
 <!-- //move top -->
 
 <!-- common jquery plugin -->
-<script src="assets/js/jquery-3.3.1.min.js"></script>
+<script src="/assets/js/jquery-3.3.1.min.js"></script>
 <!-- //common jquery plugin -->
 
+<!-- counter-->
+<script src="/assets/js/counter.js"></script>
+<!-- //counter-->
+
 <!-- theme switch js (light and dark)-->
-<script src="assets/js/theme-change.js"></script>
+<script src="/assets/js/theme-change.js"></script>
 <!-- //theme switch js (light and dark)-->
 
 <!-- MENU-JS -->
@@ -188,7 +153,7 @@ Author URL: http://w3layouts.com
 <!-- //disable body scroll which navbar is in active -->
 
 <!-- bootstrap -->
-<script src="assets/js/bootstrap.min.js"></script>
+<script src="/assets/js/bootstrap.min.js"></script>
 <!-- //bootstrap -->
 <!-- //Js scripts -->
 </body>

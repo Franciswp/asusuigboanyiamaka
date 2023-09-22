@@ -10,7 +10,7 @@
   <!-- Google fonts -->
   <link href="//fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
   <!-- Template CSS Style link -->
-  <link rel="stylesheet" href="assets/css/style-starter.css">
+  <link rel="stylesheet" href="/assets/css/style-starter.css">
 </head>
 
 <body>
@@ -40,6 +40,9 @@
           <li class="nav-item" sec:authorize="isAnonymous()">
             <a th:href="@{/login}" class="nav-link">LogIn</a>
           </li>
+         <!-- <li class="nav-item" sec:authorize="isAnonymous()">
+            <a th:href="@{/public/register}" class="nav-link">SignIn</a>
+          </li>-->
           <li class="nav-item" sec:authorize="isAuthenticated()">
             <a th:href="@{/dashboard}" class="nav-link">Dashboard</a>
           </li>

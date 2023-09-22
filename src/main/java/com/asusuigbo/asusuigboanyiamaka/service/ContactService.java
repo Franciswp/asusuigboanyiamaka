@@ -1,34 +1,61 @@
 package com.asusuigbo.asusuigboanyiamaka.service;
 
-import com.asusuigbo.asusuigboanyiamaka.controller.ContactController;
+import com.asusuigbo.asusuigboanyiamaka.constants.AsusuigboConstants;
 import com.asusuigbo.asusuigboanyiamaka.model.Contact;
+import com.asusuigbo.asusuigboanyiamaka.repository.ContactRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import org.springframework.web.context.annotation.ApplicationScope;
-import org.springframework.web.context.annotation.RequestScope;
-import org.springframework.web.context.annotation.SessionScope;
 
-@Service @Slf4j  @ApplicationScope //@SessionScope //@RequestScope
+import java.util.Optional;
+
+@Slf4j
+@Service
 public class ContactService {
 
-    private int counter = 0;
+    @Autowired
+    private ContactRepository contactRepository;
 
-    public ContactService(){
-        System.out.println("Contact Service Bean initialized");
-    }
-
+    /**
+     * Save Contact Details into DB
+     * @param contact
+     * @return boolean
+     */
     public boolean saveMessageDetails(Contact contact){
-        boolean isSaved = true;
-        //TODO - Need to persist the data into the DB table
-        log.info(contact.toString());
+        boolean isSaved = false;
+        contact.setStatus(AsusuigboConstants.OPEN);
+        Contact savedContact = contactRepository.save(contact);
+        if(null != savedContact && savedContact.getContactId()>0) {
+            isSaved = true;
+        }
         return isSaved;
     }
 
-    public int getCounter() {
-        return counter;
+    public Page<Contact> findMsgsWithOpenStatus(int pageNum,String sortField, String sortDir){
+        int pageSize = 5;
+        Pageable pageable = PageRequest.of(pageNum - 1, pageSize,
+                sortDir.equals("asc") ? Sort.by(sortField).ascending()
+                        : Sort.by(sortField).descending());
+        Page<Contact> msgPage = contactRepository.findByStatus(
+                AsusuigboConstants.OPEN,pageable);
+        return msgPage;
     }
 
-    public void setCounter(int counter) {
-        this.counter = counter;
+    public boolean updateMsgStatus(int contactId){
+        boolean isUpdated = false;
+        Optional<Contact> contact = contactRepository.findById(contactId);
+        contact.ifPresent(contact1 -> {
+            contact1.setStatus(AsusuigboConstants.CLOSE);
+        });
+        Contact updatedContact = contactRepository.save(contact.get());
+        if(null != updatedContact && updatedContact.getUpdatedBy()!=null) {
+            isUpdated = true;
+        }
+        return isUpdated;
     }
+
 }
